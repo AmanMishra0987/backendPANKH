@@ -25,18 +25,15 @@ Create a `.env` file in the root directory (copy from `.env.example`):
 cp .env.example .env
 ```
 
-Edit `.env` and add your SMTP credentials:
+Edit `.env` and add your Gmail credentials:
 
 ```env
 PORT=5000
 NODE_ENV=development
 
-# SMTP Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
+# Gmail Configuration
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
 
 # Email Recipients (optional)
 CONTACT_EMAIL=contact@pankhokiudaan.org
@@ -45,14 +42,14 @@ DISABILITY_INCLUSION_EMAIL=inclusion@pankhokiudaan.org
 PODCAST_EMAIL=podcast@pankhokiudaan.org
 ```
 
-### 3. Gmail Setup (if using Gmail)
+### 3. Gmail App Password Setup
 
 1. Enable 2-Step Verification on your Google Account
 2. Generate an App Password:
    - Go to Google Account settings
    - Security → 2-Step Verification → App passwords
    - Generate a new app password for "Mail"
-   - Use this password in `SMTP_PASS`
+   - Use this password in `GMAIL_APP_PASSWORD`
 
 ### 4. Run the Server
 
@@ -88,12 +85,12 @@ Health check endpoint
 ## Email Configuration
 
 The server sends two emails for each form submission:
-1. **Notification email** to the organization (using the specific email from env or defaulting to SMTP_USER)
+1. **Notification email** to the organization (using the specific email from env or defaulting to GMAIL_USER)
 2. **Confirmation email** to the user who submitted the form
 
 ## Troubleshooting
 
-- **SMTP Connection Error**: Verify your SMTP credentials and ensure you're using an App Password for Gmail
+- **Gmail Connection Error**: Verify your Gmail credentials and ensure you're using an App Password (not your regular Gmail password)
 - **Port Already in Use**: Change the PORT in `.env` file
 - **CORS Issues**: The server is configured to allow CORS from the frontend
 
@@ -101,7 +98,7 @@ The server sends two emails for each form submission:
 
 For production:
 1. Set `NODE_ENV=production` in `.env`
-2. Use a proper email service (SendGrid, Mailgun, etc.) instead of Gmail
-3. Update SMTP configuration accordingly
-4. Ensure environment variables are securely stored
+2. Consider using a proper email service (SendGrid, Mailgun, etc.) for higher volume
+3. Ensure environment variables are securely stored
+4. Keep your Gmail App Password secure and never commit it to version control
 

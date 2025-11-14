@@ -3,21 +3,19 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Create reusable transporter object using SMTP transport
+// Create reusable transporter object using Gmail app password
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+  service: 'gmail',
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
   },
 });
 
 // Verify connection configuration
 transporter.verify(function (error, success) {
   if (error) {
-    console.log('SMTP connection error:', error);
+    console.log('Gmail connection error:', error);
   } else {
     console.log('Server is ready to take our messages');
   }

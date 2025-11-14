@@ -17,8 +17,8 @@ router.post('/', async (req, res) => {
 
     // Email to organization
     const mailOptions = {
-      from: process.env.SMTP_USER,
-      to: process.env.DISABILITY_INCLUSION_EMAIL || process.env.SMTP_USER,
+      from: process.env.GMAIL_USER,
+      to: process.env.DISABILITY_INCLUSION_EMAIL || process.env.GMAIL_USER,
       replyTo: email,
       subject: `Disability Inclusion Support Request: ${supportType}`,
       html: `
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
     // Confirmation email to user
     const confirmationMailOptions = {
-      from: process.env.SMTP_USER,
+      from: process.env.GMAIL_USER,
       to: email,
       subject: 'Support Request Received - Pankho Ki Udaan',
       html: `

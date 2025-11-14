@@ -59,8 +59,8 @@ router.post('/', async (req, res) => {
 
     // Email to organization
     const mailOptions = {
-      from: process.env.SMTP_USER,
-      to: process.env.UDAAN_TALK_EMAIL || process.env.SMTP_USER,
+      from: process.env.GMAIL_USER,
+      to: process.env.UDAAN_TALK_EMAIL || process.env.GMAIL_USER,
       replyTo: email,
       subject: `Udaan Talk Registration: ${fullName} - ${participationType}`,
       html: `
@@ -105,7 +105,7 @@ router.post('/', async (req, res) => {
 
     // Confirmation email to user
     const confirmationMailOptions = {
-      from: process.env.SMTP_USER,
+      from: process.env.GMAIL_USER,
       to: email,
       subject: 'Udaan Talk Registration Confirmation',
       html: `
