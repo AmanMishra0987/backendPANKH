@@ -26,7 +26,7 @@ const corsOptions = {
     
     // List of allowed origins
     const allowedOrigins = [
-      process.env.FRONTEND_URL || 'https://fronytend-pankh.vercel.app',
+      process.env.FRONTEND_URL || 'https://frontend-pankh-sigma.qobo.dev',
     ].filter(Boolean); // Remove undefined values
     
     // Check if origin is allowed
